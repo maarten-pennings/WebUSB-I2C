@@ -1,14 +1,13 @@
 /* WebUSB-I2C - entering commands in a web-console to control an I2C slave
 ** 2018 Jul 22 Maarten Pennings
 */
-
 // Assumes 
 //  - Arduino pro micro 
 //  - An I2C slave connected to SCL/pin3 and SDA/pin2
 //  - Optionally a FTDI/CH340/CP2101/etc on RX and TX as a debug-console (115200)
-//  - Use https://webusb.github.io/arduino/demos/console/ as console for commands 
+//  - Use https://webusb.github.io/arduino/demos/console as console for commands 
 //  - Type 'h' for help in command-console
-
+#define VERSION "v2"
 
 #include <Wire.h>   // I2C library
 
@@ -23,7 +22,7 @@
 // Creating an instance of WebUSBSerial will add an additional USB interface to
 // the device that is marked as vendor-specific (rather than USB CDC-ACM) and
 // is therefore accessible to the browser. The URL is a hint to the browser.
-WebUSB WebUSBSerial(1 /* https:// */, "maarten-pennings.github.io/WebUSB-LED");
+WebUSB WebUSBSerial(1 /* https:// */, "webusb.github.io/arduino/demos/console");
 
 
 // ==== Serial ===================================================================================
@@ -171,6 +170,9 @@ int hex2dec(int ch) { // converts 0..9,a..f to 0..15; all other chars to -1
 
 // ==== Setup/Loop ===============================================================================
 
+// If you have a LED connected to some pin, define LEDPIN, otherwise keep it undefined.
+#define LEDPIN 13
+
 state_t state;   // The state of the I2C transaction command
 int     ch;      // Character to process
 
@@ -186,10 +188,15 @@ void setup() {
   DebugSerial.begin(115200); 
   DebugSerial.println("");
   DebugSerial.println("");
-  DebugSerial_print0("Welcome to WebUSB-I2C");
+  DebugSerial_print0("Welcome to WebUSB-I2C " VERSION);
 
   // I2C
   Wire.begin(); 
+
+  // LED
+  #ifdef LEDPIN
+  pinMode( LEDPIN, OUTPUT);    
+  #endif
 
   // Set state
   state= state_noconsole; // No console yet (for entering commands)
@@ -206,7 +213,7 @@ void loop() {
   if( wasup!=isup ) {
     if( isup ) {
       DebugSerial_print0("Web connected");
-      MainSerial_printstr("Welcome to WebUSB-I2C" NL);
+      MainSerial_printstr("Welcome to WebUSB-I2C " VERSION NL);
       state= state_prompt;
     } else {
       DebugSerial_print0("Web disconnected");
@@ -220,6 +227,10 @@ void loop() {
       ch=-1; // Don't know what to do with a 0
     else {
       DebugSerial_trace((char)ch); 
+      #ifdef LEDPIN
+      pinMode( LEDPIN, OUTPUT);    
+      digitalWrite( LEDPIN, ! digitalRead(LEDPIN));
+      #endif
     }
   }
   // Alive

@@ -181,8 +181,13 @@ int     data;    // The value of DD (once entered)
 int     count;   // The value of CC (once entered)
 
 void setup() {
+  // LED
+  #ifdef LEDPIN
+  pinMode( LEDPIN, OUTPUT);    
+  #endif
+  
   // In case DebugSerial is Serial over USB, we need a bit of time for it to be enabled
-  while( !DebugSerial && count<5000 ) count++;
+  while( !DebugSerial && count<1000 ) count++;
 
   // Setup DebugSerial
   DebugSerial.begin(115200); 
@@ -193,16 +198,16 @@ void setup() {
   // I2C
   Wire.begin(); 
 
-  // LED
-  #ifdef LEDPIN
-  pinMode( LEDPIN, OUTPUT);    
-  #endif
-
   // Set state
   state= state_noconsole; // No console yet (for entering commands)
   ch= -1; // No char to process
   DebugSerial_print0("Waiting for connect from web");
   DebugSerial_print0("Visit e.g. https://webusb.github.io/arduino/demos/console");
+
+  // Toggle LED to show booted
+  #ifdef LEDPIN
+  digitalWrite( LEDPIN, ! digitalRead(LEDPIN));
+  #endif
 }
 
 
@@ -228,7 +233,6 @@ void loop() {
     else {
       DebugSerial_trace((char)ch); 
       #ifdef LEDPIN
-      pinMode( LEDPIN, OUTPUT);    
       digitalWrite( LEDPIN, ! digitalRead(LEDPIN));
       #endif
     }

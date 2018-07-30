@@ -2,12 +2,12 @@
 ** 2018 Jul 22 Maarten Pennings
 */
 // Assumes 
-//  - Arduino pro micro 
-//  - An I2C slave connected to SCL/pin3 and SDA/pin2
+//  - Arduino/Genuino Micro 
+//  - An I2C slave connected to SCL/pin3 and SDA/pin2 (e.g. an ENS210)
 //  - Optionally a FTDI/CH340/CP2101/etc on RX and TX as a debug-console (115200)
 //  - Use https://webusb.github.io/arduino/demos/console as console for commands 
 //  - Type 'h' for help in command-console
-#define VERSION "v2"
+#define VERSION "v4"
 
 #include <Wire.h>   // I2C library
 
@@ -64,7 +64,7 @@ void MainSerial_printstr(const char * s) {
 }
 
 
-// ==== Serial: helpers for DSebugSerial =========================================================
+// ==== Serial: helpers for DebugSerial =========================================================
 
 #define PREFIX  "dbg: "
 //#define PREFIX  ""
@@ -187,7 +187,11 @@ void setup() {
   #endif
   
   // In case DebugSerial is Serial over USB, we need a bit of time for it to be enabled
-  while( !DebugSerial && count<1000 ) count++;
+  while( !DebugSerial && !MainSerial && count<200 ) {
+    count++;
+    delay(50);
+    digitalWrite( LEDPIN, ! digitalRead(LEDPIN));
+  }
 
   // Setup DebugSerial
   DebugSerial.begin(115200); 
@@ -206,7 +210,7 @@ void setup() {
 
   // Toggle LED to show booted
   #ifdef LEDPIN
-  digitalWrite( LEDPIN, ! digitalRead(LEDPIN));
+  digitalWrite( LEDPIN, DebugSerial || MainSerial );
   #endif
 }
 

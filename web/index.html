@@ -1,15 +1,90 @@
 <!DOCTYPE html>
+<!--
+  This is the main html file belonging to the github project https://github.com/maarten-pennings/WebUSB-I2C
+-->
 <html>
+
   <head>
-    <title>WebUSB-I2C</title>
+  
+    <title>WebUSB-I2C ENS210</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
     <script src="serial.js"></script>
+    <script src="smoothie.js"></script>
     <script src="WebUSB-I2C.js"></script>
+    
+    <script>
+      // Setup the T graph
+      var tformatter = function(val, precision) { return "  "+val.toFixed(1)+" \u00B0C"; }
+      var tsmoothie = new SmoothieChart( {
+        millisPerPixel:100,
+        grid:{millisPerLine:10000,verticalSections:30-20},
+        minValue:20,
+        maxValue:30,
+        yMinFormatter: tformatter,
+        yMaxFormatter: tformatter,
+        timestampFormatter:SmoothieChart.timeFormatter,
+        labels:{fontSize:16},
+      });
+      var tline = new TimeSeries();
+      tsmoothie.addTimeSeries(tline, {lineWidth:5,strokeStyle:'#00ff00',fillStyle:'rgba(0,255,0,0.3)'} );
+
+      // Setup the H graph
+      var hformatter = function(val, precision) { return "  "+val.toFixed(0)+" %RH"; }
+      var hsmoothie = new SmoothieChart( {
+        millisPerPixel:100,
+        grid:{millisPerLine:10000,verticalSections:10},
+        minValue:0,
+        maxValue:100,
+        yMinFormatter: hformatter,
+        yMaxFormatter: hformatter,
+        timestampFormatter:SmoothieChart.timeFormatter,
+        labels:{fontSize:16},
+      });
+      var hline = new TimeSeries();
+      hsmoothie.addTimeSeries(hline, {lineWidth:5,strokeStyle:'#0000ff',fillStyle:'rgba(0,0,255,0.3)'} );
+
+      // Adjust the canvas (called for every resize)
+      function resize(canvas) {
+        canvas.width= window.innerWidth*0.45;
+        canvas.height= window.innerHeight-100;
+      }
+
+      // Place and (auto-)size the graphs
+      function init() {
+        var t_canvas= document.getElementById("t_canvas");
+        tsmoothie.streamTo(t_canvas, 250 /* delay */ );
+        window.addEventListener('resize', function(){resize(t_canvas);}, false);
+        resize(t_canvas);
+        var h_canvas= document.getElementById("h_canvas");
+        hsmoothie.streamTo(h_canvas, 250 /* delay */ );
+        window.addEventListener('resize', function(){resize(h_canvas);}, false);
+        resize(h_canvas);
+      }
+      
+      // Note: in function 'onrxline()' (see WebUSB-I2C.js) the latest data is added to 'tline' and 'hline'.
+      // That function also updates id_T id_H, id_stats.
+    </script>
+    
   </head>
-  <body>
-    <p>
-      <button id="connect">Connect</button> [<span id="status"></span>]
-    </p>
-    T = <span id="T">...</span> &#176;C<br/>
-    H = <span id="H">...</span> %RH<br/>
+
+  <body onload="init();">
+    <table width="100%">
+      <tr>
+        <td colspan="2">
+          <big>WebUSB-I2C for ENS210</big><br/>
+          <small><span id="id_status"></span> &nbsp; <button id="id_connect">Connect</button> &nbsp; <span id="id_stats"></span></small>
+        </td>
+      </tr>
+      <tr>
+        <td width="50%"><canvas id="t_canvas">Your browser doesn't support canvas</canvas></td>
+        <td width="50%"><canvas id="h_canvas">Your browser doesn't support canvas</canvas></td>
+      </tr>
+      <tr>
+        <td>Temperature (<span id="id_T"></span>)</td>
+        <td>Relative humidity (<span id="id_H"></span>)</td>
+      </tr>
+    </div>
   </body>
+  
+  
 </html>

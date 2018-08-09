@@ -1,6 +1,7 @@
 # WebUSB-I2C
 Sending commands from a browser (web page with JavaScript) via a WebUSB dongle to an I2C slave.
 
+
 ## Introduction
 This project implements a WebUSB to I2C dongle, and uses the ENS210 I2C slave as an example.
 
@@ -63,7 +64,10 @@ We see
    The write was successful (result `[00]`) and the read shows `[1002]`, low endian for 0x0210, the part id of ENS210. 
  * Finally, the `w44p` is a ping to device 0x44, which is not connected and thus fails (result `[02]`). 
    See [Arduino](https://www.arduino.cc/en/Reference/WireEndTransmission) for the error codes for write.
-   
+
+By the way, note the USB icon (the "fork") in the Chrome tab (just to the right of the X for closing the tab). 
+It pops up at the moment a web page has established connection with a Web USB device.
+
 
 ## WebUSB-I2C web pages
 

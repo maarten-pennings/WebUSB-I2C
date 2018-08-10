@@ -7,7 +7,7 @@
 //  - Optionally a FTDI/CH340/CP2101/etc on RX and TX as a debug-console (115200)
 //  - Use https://webusb.github.io/arduino/demos/console as console for commands 
 //  - Type 'h' for help in command-console
-#define VERSION "v4"
+#define VERSION "v5"
 
 #include <Wire.h>   // I2C library
 
@@ -265,6 +265,11 @@ void loop() {
         DebugSerial_print0("Help");
         MainSerial_printchar('h');
         MainSerial_printstr(NL "(wAA(DD)*|rAACC)+p where A, D, C are hex nibbles for address, data, count");
+        state= state_prompt; 
+      } else if( ch=='v' ) { 
+        DebugSerial_print0("Version");
+        MainSerial_printchar('v');
+        MainSerial_printstr(NL VERSION);
         state= state_prompt; 
       } else { 
         DebugSerial_print1("Error in idle (ch=",ch,")");

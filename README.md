@@ -8,7 +8,7 @@ This project implements a WebUSB to I2C dongle, and uses the ENS210 I2C slave as
 The system consists of a PC, a WebUSB-I2C dongle, and an I2C slave like the [ENS210 from ams](https://ams.com/ens210).
 The dongle has two connectors. The first connector is a USB connecter which allows plugging the dongle into a PC. 
 The second connector is a four pin header with I2C (SCL, SDA) and power (VDD and GND) which allows plugging in an I2C slave (shield).
-See the figure below for a system overview. The boxes in red are new, and documented in this project.
+See the figure below for a system overview. The boxes in blue are new, and documented in this project.
 
 ![System overview](system.png)
 

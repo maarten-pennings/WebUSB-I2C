@@ -198,6 +198,7 @@ void setup() {
   DebugSerial.println("");
   DebugSerial.println("");
   DebugSerial_print0("Welcome to WebUSB-I2C " VERSION);
+  DebugSerial_print2("USB VERSION ", USB_VERSION >> 8,"", USB_VERSION & 0xFF," (must be >=0210)");
 
   // I2C
   Wire.begin(); 

@@ -12,7 +12,7 @@ See the figure below for a system overview. The boxes in red are new, and docume
 
 ![System overview](system.png)
 
-The first major component is the WebUSB-I2C dongle. It contains an Arduino Pro Mini. This is a board with a USB connector 
+The first major component is the WebUSB-I2C dongle. It contains an Arduino Pro Micro. This is a board with a USB connector 
 and an Atmega32u4 microcontroller. The Atmega32u4 was chosen, because it has embedded USB hardware, which means that the 
 firmware can implement the wanted USB functionality: a Web USB CDC stack. Web USB is a standard that allows web browsers 
 to communicate with USB hardware (see [WebUSB-LED](https://github.com/maarten-pennings/WebUSB-LED) for an intro). 
@@ -26,13 +26,13 @@ JavaScript that implements an ENS210 driver and graphs the results.
 
 ## WebUSB-I2C dongle
 As can be seen in the system overview image above, the WebUSB dongle hardware is largely standard:
- * I used a small Arduino Pro Mini: a [Bad USB](https://www.aliexpress.com/item/Beetle-Virtual-Keyboard-BadUSB-Pro-Micro-ATMEGA32U4-Module-Mini-Development-Expansion-Board-For-Arduino-Leonardo-R3/32845916898.html) (or [alternative](https://www.aliexpress.com/item/Free-shipping-SS-micro-ATMEGA32U4-module-compatible-for-arduino-pro-micro/32660718568.html))  development board. It has a 5V to 3V LDO on board.
+ * I used a small Arduino Pro Micro: a [Bad USB](https://www.aliexpress.com/item/Beetle-Virtual-Keyboard-BadUSB-Pro-Micro-ATMEGA32U4-Module-Mini-Development-Expansion-Board-For-Arduino-Leonardo-R3/32845916898.html) (or [alternative](https://www.aliexpress.com/item/Free-shipping-SS-micro-ATMEGA32U4-module-compatible-for-arduino-pro-micro/32660718568.html))  development board. It has a 5V to 3V LDO on board.
  * I added an I2C [level shifter](https://www.aliexpress.com/item/5pcs-lot-5V-3V-IIC-UART-SPI-Four-Channel-Level-Converter-Module-for-Arduino-Free-Shipping/1821378018.html) or ([alternative](https://www.aliexpress.com/item/Logic-Level-Shifter-Bi-Directional-Four-way-two-way-logic-level-transformation-module/32376035003.html)) since most of my I2C slaves (like the ENS210) run on 3V3, not 5V0.
  * I added a home-made board with an I2C "shield" connector.
  * I did not add pull-ups on the I2C pins (I assume they are present internally).
 
-The figure below shows the small Pro Mini ...
-![Arduino Pro Mini](promini.jpg) 
+The figure below shows the small Pro Micro ...
+![Arduino Pro Micro](promicro.jpg) 
 
 ... and the sandwich of the three boards I soldered together.
 ![WebUSB-I2C sandwich](WebUSB-I2C-1.jpg)

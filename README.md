@@ -35,16 +35,16 @@ As the name WebUSB-I2C implies, it uses the third option.
 ## Components
 This project has several components
  * Hardware for the WebUSB-I2C dongle. This consists of an Arduino Pro Micro and a I2C shield connector.
-   See (documentation)[doc] for details of building the hardware.
+   See [documentation](doc) for details of building the hardware.
  * Firmware for the WebUSB-I2C dongle. This is basically an Arduino sketch. It implements a WebUSB stack
    and a command interpreter for I2C commands. Note that this firmware has a "serial" port towards the 
    web browser, but also a serial port (COMxx) towards the OS. The latter is used for debug tracing.
-   The actual source is (WebSUB-I2C.ino)[WebSUB-I2C.ino] in this directory.
-   See (documentation)[doc] for details on the firmware, and on the libraries used.
+   The actual source is [WebSUB-I2C.ino](WebSUB-I2C.ino) in this directory.
+   See [documentation](doc) for details on the firmware, and on the libraries used.
  * A web page with a terminal to enter commands for the WebUSB-dongle.
-   This web page is actually taken from the (github webusb project)[https://github.com/webusb/arduino].
-   It is available in the (web)[web] directory in this project.
+   This web page is actually taken from the [github webusb project](https://github.com/webusb/arduino).
+   It is available in the [web](web) directory in this project.
  * A web page with an ENS210 driver in JavaScript that plots the temperature and relative humidity reported 
-   by the ENS210 in a live graph. It is available in the (web)[web] directory in this project.
+   by the ENS210 in a live graph. It is available in the [web](web) directory in this project.
 
 (end)

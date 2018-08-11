@@ -47,8 +47,8 @@ This project has several components
    The actual source is [WebUSB-I2C.ino](WebUSB-I2C.ino) in this directory.  
    See [documentation](doc) for details on the firmware, and on the libraries used.
  * Web pages that interact with the dongle.  
-    * A web page with a terminal to enter commands for the WebUSB-dongle.
-    * A web page with an ENS210 driver in JavaScript that plots the temperature 
+    * A [web page](https://maarten-pennings.github.io/webusb-console) with a terminal to enter commands for the WebUSB-dongle.
+    * A [web page](https://maarten-pennings.github.io/webusb-ens210) with an ENS210 driver in JavaScript that plots the temperature 
       and relative humidity reported by the ENS210 in a live graph. 
     
    These are available in the [web](web) directory in this project.

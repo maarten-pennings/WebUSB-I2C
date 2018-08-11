@@ -20,6 +20,9 @@
 // %AppData%\Local\Arduino15\packages\arduino\hardware\avr\1.6.21\cores\arduino\USBCore.h
 // See https://github.com/webusb/arduino, and also see warning on (semi) bricking.
 #include <WebUSB.h> 
+#if USB_VERSION<0x210
+#error USBCore.h file must be patched
+#endif
 
 // Creating an instance of WebUSBSerial will add an additional USB interface to
 // the device that is marked as vendor-specific (rather than USB CDC-ACM) and

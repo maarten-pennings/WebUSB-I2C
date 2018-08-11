@@ -24,7 +24,8 @@
 // Creating an instance of WebUSBSerial will add an additional USB interface to
 // the device that is marked as vendor-specific (rather than USB CDC-ACM) and
 // is therefore accessible to the browser. The URL is a hint to the browser.
-WebUSB WebUSBSerial(1 /* https:// */, "maarten-pennings.github.io");
+#define URL "maarten-pennings.github.io" 
+WebUSB WebUSBSerial(1 /* https:// */, URL);
 
 
 // ==== Serial ===================================================================================
@@ -200,7 +201,7 @@ void setup() {
   DebugSerial.println("");
   DebugSerial.println("");
   DebugSerial_print0("Welcome to WebUSB-I2C " VERSION);
-  DebugSerial_print2("USB VERSION ", USB_VERSION >> 8,"", USB_VERSION & 0xFF," (must be >=0210)");
+  DebugSerial_print2("USB version is ", USB_VERSION >> 8,"", USB_VERSION & 0xFF," (must be >=0210)");
 
   // I2C
   Wire.begin(); 
@@ -209,7 +210,7 @@ void setup() {
   state= state_noconsole; // No console yet (for entering commands)
   ch= -1; // No char to process
   DebugSerial_print0("Waiting for connect from web");
-  DebugSerial_print0("Visit e.g. https://webusb.github.io/arduino/demos/console");
+  DebugSerial_print0("Visit e.g. https://" URL);
 
   // Toggle LED to show booted
   #ifdef LEDPIN

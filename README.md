@@ -48,8 +48,19 @@ This project has several components
    See [documentation](doc) for details on the firmware, and on the libraries used.
  * Web pages that interact with the dongle.  
     * A web page with a terminal to enter commands for the WebUSB-dongle.
-    * A web page with an ENS210 driver in JavaScript that plots the temperature and relative humidity reported by the ENS210 in a live graph. 
+    * A web page with an ENS210 driver in JavaScript that plots the temperature 
+      and relative humidity reported by the ENS210 in a live graph. 
     
    These are available in the [web](web) directory in this project.
+
+
+## Demos
+The following screenshots show the two web pages interacting with the dongle.
+
+### Console in action
+![console](doc/console.png)
+
+### ENS210 in action
+![ens210](doc/ens210.png)
 
 (end)

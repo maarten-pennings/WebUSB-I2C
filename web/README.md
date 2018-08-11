@@ -5,12 +5,13 @@ Web pages for the [WebUSB-I2C](https://github.com/maarten-pennings/WebUSB-I2C) p
 ## Introduction
 The WebUSB-I2C project comes with two web pages
 
- * [console](console)
+ * [console](console)  
    A web page that shows a console (terminal).
    The user can type commands: write bytes to the I2C slave, or read byte from it.
    This is independent from the I2C slave connected to the dongle.
-   Even if no I2C slave is connected, "local" commands like `h` for help or `v` for version can be given (or try `w00p` for a failing ping)
- * [ens210](ens210)
+   Even if no I2C slave is connected, "local" commands like `h` for help or `v` for version can be given
+   or try `w00p` for a failing ping.
+ * [ens210](ens210)  
    A web page with a driver for the ENS210.
    This page assumes an ENS210 is connected to the WebUSB-I2C dongle.
    It will connect to USB, verify a WebUSB-I2C dongle is there, verify if an ENS210 is there.

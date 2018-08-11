@@ -62,7 +62,7 @@
       }
       
       // Note: in function 'onrxline()' (see WebUSB-I2C.js) the latest data is added to 'tline' and 'hline'.
-      // That function also updates id_T id_H, id_stats.
+      // That function also updates id_t, id_h, id_stats.
     </script>
     
   </head>
@@ -72,7 +72,7 @@
       <tr>
         <td colspan="2">
           <big>WebUSB-I2C for ENS210</big><br/>
-          <small><span id="id_status"></span> &nbsp; <button id="id_connect">Connect</button> &nbsp; <span id="id_stats"></span></small>
+          <small><span id="id_usbmsg"></span><span id="id_donglemsg"></span><span id="id_shieldmsg"></span> &nbsp; <button id="id_connect">Connect</button> &nbsp; <span id="id_stats"></span></small>
         </td>
       </tr>
       <tr>
@@ -80,8 +80,8 @@
         <td width="50%"><canvas id="h_canvas">Your browser doesn't support canvas</canvas></td>
       </tr>
       <tr>
-        <td>Temperature (<span id="id_T"></span>)</td>
-        <td>Relative humidity (<span id="id_H"></span>)</td>
+        <td>Temperature <font color="#00ff00"><b><span id="id_t"></span></b></font> <span id="id_tminmax"></span></td>
+        <td>Relative humidity <font color="#0000ff"><b><span id="id_h"></span></b></font> <span id="id_hminmax"></span></td>
       </tr>
     </div>
   </body>

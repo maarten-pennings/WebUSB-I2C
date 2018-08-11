@@ -40,8 +40,12 @@ The figure below shows the small Pro Micro ...
 I 3D printed a small case (note the light guides for the LEDs) ...
 ![WebUSB-I2C in case](WebUSB-I2C-2.jpg)
 
-... and finally a photo with the ENS210 shield
+... the I2C connector can mate with e.g. the ENS210 shield ...
 ![WebUSB-I2C with ENS210 shield](WebUSB-I2C-3.jpg)
+
+... and the complete setup looks like this
+![PC, WebUSB-I2C, and ENS210 shield](WebUSB-I2C-4.jpg)
+
 
 Software wise, I added the WebUSB stack, see [WebUSB-LED](https://github.com/maarten-pennings/WebUSB-LED) for an intro. 
 Secondly, I added a command interpreter that maps one-to-one on the Arduino I2C API. See the state machine below for the mapping.

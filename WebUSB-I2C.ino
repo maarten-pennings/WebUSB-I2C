@@ -5,8 +5,10 @@
 //  - Arduino/Genuino Micro 
 //  - An I2C slave connected to SCL/pin3 and SDA/pin2 (e.g. an ENS210)
 //  - Optionally a FTDI/CH340/CP2101/etc on RX and TX as a debug-console (115200)
-//  - Use https://webusb.github.io/arduino/demos/console as console for commands 
-//  - Type 'h' for help in command-console
+// To use
+//  - Goto https://webusb.github.io/arduino/demos/console for a webpage with a console 
+//  - Click the connect button to connect to the dongle
+//  - Type 'h' for help in command-console (or 'v' for version)
 #define VERSION "v5"
 
 #include <Wire.h>   // I2C library

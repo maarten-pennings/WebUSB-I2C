@@ -9,7 +9,7 @@
 //  - Goto https://webusb.github.io/arduino/demos/console for a webpage with a console 
 //  - Click the connect button to connect to the dongle
 //  - Type 'h' for help in command-console (or 'v' for version)
-#define VERSION "v5"
+#define VERSION "v6"
 
 #include <Wire.h>   // I2C library
 

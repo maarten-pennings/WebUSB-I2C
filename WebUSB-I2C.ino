@@ -9,7 +9,7 @@
 //  - Goto https://webusb.github.io/arduino/demos/console for a webpage with a console 
 //  - Click the connect button to connect to the dongle
 //  - Type 'h' for help in command-console (or 'v' for version)
-#define VERSION "v6"
+#define VERSION "v7"
 
 #include <Wire.h>   // I2C library
 
@@ -26,8 +26,8 @@
 
 // Creating an instance of WebUSBSerial will add an additional USB interface to
 // the device that is marked as vendor-specific (rather than USB CDC-ACM) and
-// is therefore accessible to the browser. The URL is a hint to the browser.
-#define URL "maarten-pennings.github.io" 
+// is therefore accessible to the browser. The URL is a hint to the os/browser.
+#define URL "maarten-pennings.github.io/webusb-ens210"
 WebUSB WebUSBSerial(1 /* https:// */, URL);
 
 

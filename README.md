@@ -5,6 +5,7 @@ Sending commands from a browser (web page with JavaScript) via a WebUSB-I2C dong
 
 ## Introduction
 This project implements a WebUSB-I2C dongle, and uses the ENS210 I2C slave as an example.
+See this [video](https://www.youtube.com/watch?v=gzO9xCe6INM) for a quick introduction.
 
 A WebUSB-I2C dongle is a dongle has a USB plug that can be plugged into a PC.
 A WebUSB-I2C dongle has a second connector, which allows plugging in I2C slaves.

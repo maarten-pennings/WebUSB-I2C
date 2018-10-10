@@ -33,7 +33,9 @@ There is one important design decision to make: what form does the USB interface
    The big advantage is that the driver for the USB device can be written in JavaScript and loaded on the fly when browsing to
    the web page for that USB device.
 
-As the name WebUSB-I2C implies, it uses the third option.
+As the name WebUSB-I2C implies, this project uses the third option.
+It was actually my second WebUSB project, I learned a lot of details in my first project 
+[WebUSB-LED](https://github.com/maarten-pennings/WebUSB-LED).
 
 
 ## Components

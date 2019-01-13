@@ -24,7 +24,7 @@ the commands for the dongle in a console in a web browser and see the responses 
 JavaScript that implements an ENS210 driver and graphs the results.
 
 
-## WebUSB-I2C dongle
+## WebUSB-I2C dongle hardware
 As can be seen in the system overview image above, the WebUSB dongle hardware is largely standard:
  * I used a small Arduino Pro Micro: a [Bad USB](https://www.aliexpress.com/item/Beetle-Virtual-Keyboard-BadUSB-Pro-Micro-ATMEGA32U4-Module-Mini-Development-Expansion-Board-For-Arduino-Leonardo-R3/32845916898.html) (or [alternative](https://www.aliexpress.com/item/Free-shipping-SS-micro-ATMEGA32U4-module-compatible-for-arduino-pro-micro/32660718568.html))  development board. It has a 5V to 3V LDO on board.
  * I added an I2C [level shifter](https://www.aliexpress.com/item/5pcs-lot-5V-3V-IIC-UART-SPI-Four-Channel-Level-Converter-Module-for-Arduino-Free-Shipping/1821378018.html) or ([alternative](https://www.aliexpress.com/item/Logic-Level-Shifter-Bi-Directional-Four-way-two-way-logic-level-transformation-module/32376035003.html)) since most of my I2C slaves (like the ENS210) run on 3V3, not 5V0.
@@ -47,6 +47,7 @@ I 3D printed a small case (note the light guides for the LEDs) ...
 ![PC, WebUSB-I2C, and ENS210 shield](WebUSB-I2C-4.jpg)
 
 
+## WebUSB-I2C dongle firmware
 Software wise, I added the WebUSB stack, see [WebUSB-LED](https://github.com/maarten-pennings/WebUSB-LED) for an intro. 
 Secondly, I added a command interpreter that maps one-to-one on the Arduino I2C API. See the state machine below for the mapping.
 This serves as documentation of a large part of the firmware.
@@ -74,10 +75,17 @@ It pops up at the moment a web page has established connection with a Web USB de
 
 
 ## WebUSB-I2C web pages
+We also need an application to talk to the dongle.
+For WebUSB, this application is a webpage. I have developed two web pages. 
 
-WORK IN PROGRESS
+The first one is a "terminal", already shown in the previous paragraph.
+You can type characters, which will be send to the dongle, and characters transmitted by the dongle 
+are displayed by the "terminal". So an ideal method to debug and learn how the dongle works.
 
- * standard [console](https://webusb.github.io/arduino/demos/console/) 
- * ENS210 graphs
- 
+The second application assumes an ENS210 is connected to the dongle.
+This web page sends commands to the ENS210 via the dongle. These commands execute measurements.
+The measurement results are displayed in a graph.
+
+For both applications refer to the [web](../web) directory.
+
 (end)
